@@ -1,8 +1,15 @@
 const colors = require('tailwindcss/colors')
 
+delete colors.lightBlue
+delete colors.warmGray
+delete colors.trueGray
+delete colors.coolGray
+delete colors.blueGray
+
 module.exports = {
   mode: 'jit',
   content: [
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}'
   ],
@@ -39,8 +46,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
-    require('tailwindcss-filters'),
-    require('@tailwindcss/line-clamp')
+    require('tailwindcss-filters')
   ],
   // xwind options
   xwind: {

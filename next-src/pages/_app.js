@@ -18,7 +18,10 @@ import { StyleProvider } from '@ant-design/cssinjs'
 import { ConfigProvider } from 'antd'
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline'
 import { ThemeProvider } from '@mui/material/styles'
-import theme from '../theme'
+import { createTheme } from '../theme'
+import { DevSupport } from '@react-buddy/ide-toolbox-next'
+import { ComponentPreviews, useInitial } from '../components/dev'
+import { SettingsConsumer } from '../contexts/settings-context'
 
 dayjs.extend(relativeTime)
 dayjs.locale('vi')
@@ -100,27 +103,51 @@ function App ({ Component, pageProps }) {
         />
       )}
 
-      <ThemeProvider theme={theme}>
-        <ScopedCssBaseline>
-          <StyleProvider hashPriority='high'>
-            <ConfigProvider
-              theme={{
-                token: {
-                  colorPrimary: '#3ba2d2',
-                  colorSuccess: '#3fa00e'
-                }
-              }}
-              componentSize='large'
-              prefixCls='vluit'
-            >
-              <Layout>
-                <GoogleAnalytics trackPageViews />
-                <Component {...pageProps} />
-              </Layout>
-            </ConfigProvider>
-          </StyleProvider>
-        </ScopedCssBaseline>
-      </ThemeProvider>
+      <SettingsConsumer>
+        {(settings) => {
+          // Prevent theme flicker when restoring custom settings from browser storage
+          if (!settings.isInitialized) {
+            // return null;
+          }
+
+          const theme = createTheme({
+            colorPreset: settings.colorPreset,
+            contrast: settings.contrast,
+            direction: settings.direction,
+            paletteMode: settings.paletteMode,
+            responsiveFontSizes: settings.responsiveFontSizes
+          })
+
+          return (
+            <ThemeProvider theme={theme}>
+              <ScopedCssBaseline>
+                <StyleProvider hashPriority='high'>
+                  <ConfigProvider
+                    theme={{
+                      token: {
+                        colorPrimary: '#3ba2d2',
+                        colorSuccess: '#3fa00e'
+                      }
+                    }}
+                    componentSize='large'
+                    prefixCls='vluit'
+                  >
+                    <Layout>
+                      <GoogleAnalytics trackPageViews />
+                      <DevSupport
+                        ComponentPreviews={ComponentPreviews}
+                        useInitialHook={useInitial}
+                      >
+                        <Component {...pageProps} />
+                      </DevSupport>
+                    </Layout>
+                  </ConfigProvider>
+                </StyleProvider>
+              </ScopedCssBaseline>
+            </ThemeProvider>
+          )
+        }}
+      </SettingsConsumer>
     </>
   )
 }

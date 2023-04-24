@@ -2,21 +2,19 @@ require('dotenv').config()
 const path = require('path')
 
 const isProd = process.env.NODE_ENV === 'production'
+const domain = 'codeprime.net'
 
 const nextConfig = {
   reactStrictMode: true,
-  compiler: {
-    emotion: true
-  },
   env: {
     spaceID: process.env.spaceID,
     accessTokenDelivery: process.env.accessTokenDelivery
   },
   distDir: 'build',
   trailingSlash: true,
-  assetPrefix: isProd ? 'https://cdn.vieclamuit.com' : undefined,
+  assetPrefix: isProd ? `https://cdn.${domain}` : undefined,
   images: {
-    domains: ['localhost', '127.0.0.1', 'media.vieclamuit.com', 'static.vieclamuit.com']
+    domains: ['localhost', '127.0.0.1', `media.${domain}`, `static.${domain}`]
   },
   modularizeImports: {
     lodash: {

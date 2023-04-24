@@ -8,7 +8,7 @@ function SiteFooter (props) {
   return (
     <Footer>
       <div className='container mx-auto px-4'>
-        <div className='font-heading text-xs text-gray-500'>&copy; 2022-{dayjs().year()} {BRAND_NAME}.</div>
+        <div className='font-heading text-xs text-gray-500'>&copy; {dayjs().year()} {BRAND_NAME}.</div>
       </div>
     </Footer>
   )
