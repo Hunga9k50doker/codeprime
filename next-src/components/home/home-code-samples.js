@@ -138,10 +138,7 @@ export const HomeCodeSamples = () => {
         spacing={2}
         sx={{
           backdropFilter: 'blur(6px)',
-          backgroundColor: (theme) => {
-            console.log(theme.palette)
-            return alpha(theme.palette.neutral[800], 0.95)
-          },
+          backgroundColor: (theme) => alpha(theme.palette.neutral[800], 0.95),
           borderBottomColor: 'neutral.700',
           borderBottomStyle: 'solid',
           borderBottomWidth: 1,

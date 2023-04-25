@@ -4,9 +4,9 @@ import {
   outlinedInputClasses,
   paperClasses,
   tableCellClasses
-} from '@mui/material';
-import { common } from '@mui/material/colors';
-import { alpha } from '@mui/material/styles';
+} from '@mui/material'
+import { common } from '@mui/material/colors'
+import { alpha } from '@mui/material/styles'
 
 export const createComponents = ({ palette }) => {
   return {
@@ -166,5 +166,5 @@ export const createComponents = ({ palette }) => {
         }
       }
     }
-  };
-};
+  }
+}

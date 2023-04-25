@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import { NextSeo } from 'next-seo'
-import NoSSR from '../components/NoSSR'
 import { HomeFeatures } from '../components/home/home-features'
 import { HomeHero } from '../components/home/home-hero'
+import SiteLayout from '../components/SiteLayout'
 
 function Index ({ jobs, ...props }) {
   return (
@@ -14,7 +14,7 @@ function Index ({ jobs, ...props }) {
 
       <main>
         <HomeHero />
-        {/*<HomeFeatures />*/}
+        <HomeFeatures />
       </main>
 
       <p>
@@ -25,7 +25,13 @@ function Index ({ jobs, ...props }) {
   )
 }
 
-export default NoSSR(Index)
+export default Index
+
+Index.getLayout = (page) => (
+  <SiteLayout>
+    {page}
+  </SiteLayout>
+)
 
 // language=SCSS prefix=*{ suffix=}
 const Div = styled.div`

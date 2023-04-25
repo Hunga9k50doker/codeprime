@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from 'react'
 import {
   Box,
   Button,
@@ -7,9 +7,9 @@ import {
   SvgIcon,
   Typography,
   Unstable_Grid2 as Grid
-} from '@mui/material';
-import { useTheme } from '@mui/material/styles';
-import LinkExternal01Icon from '@untitled-ui/icons-react/build/esm/LinkExternal01';
+} from '@mui/material'
+import { useTheme } from '@mui/material/styles'
+import LinkExternal01Icon from '@untitled-ui/icons-react/build/esm/LinkExternal01'
 
 const features = [
   {
@@ -47,13 +47,13 @@ const features = [
     imageDark: '/assets/home-features-nextjs-dark.png',
     imageLight: '/assets/home-features-nextjs-light.png'
   }
-];
+]
 
 export const HomeFeatures = () => {
-  const theme = useTheme();
-  const [activeFeature, setActiveFeature] = useState(0);
-  const feature = features[activeFeature];
-  const image = theme.palette.mode === 'dark' ? feature?.imageDark : feature?.imageLight;
+  const theme = useTheme()
+  const [activeFeature, setActiveFeature] = useState(0)
+  const feature = features[activeFeature]
+  const image = theme.palette.mode === 'dark' ? feature?.imageDark : feature?.imageLight
 
   return (
     <Box
@@ -66,28 +66,28 @@ export const HomeFeatures = () => {
         py: '120px'
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth='lg'>
         <Stack
           spacing={2}
           sx={{ mb: 8 }}
         >
           <Typography
-            align="center"
-            color="inherit"
-            variant="h3"
+            align='center'
+            color='inherit'
+            variant='h3'
           >
             Everything you need to run your project.
           </Typography>
           <Typography
-            align="center"
-            color="inherit"
-            variant="subtitle2"
+            align='center'
+            color='inherit'
+            variant='subtitle2'
           >
             Not just a set of tools, the package includes ready-to-deploy conceptual application.
           </Typography>
         </Stack>
         <Grid
-          alignItems="center"
+          alignItems='center'
           container
           spacing={3}
         >
@@ -97,7 +97,7 @@ export const HomeFeatures = () => {
           >
             <Stack spacing={1}>
               {features.map((feature, index) => {
-                const isActive = activeFeature === index;
+                const isActive = activeFeature === index
 
                 return (
                   <Box
@@ -130,39 +130,39 @@ export const HomeFeatures = () => {
                     }}
                   >
                     <Typography
-                      color="inherit"
+                      color='inherit'
                       sx={{ mb: 1 }}
-                      variant="h6"
+                      variant='h6'
                     >
                       {feature.title}
                     </Typography>
                     <Typography
-                      color="inherit"
-                      variant="body2"
+                      color='inherit'
+                      variant='body2'
                     >
                       {feature.description}
                     </Typography>
                     {feature.id === 'figma' && (
                       <Box sx={{ mt: 3 }}>
                         <Button
-                          color="success"
-                          component="a"
+                          color='success'
+                          component='a'
                           endIcon={(
-                            <SvgIcon fontSize="small">
+                            <SvgIcon fontSize='small'>
                               <LinkExternal01Icon />
                             </SvgIcon>
                           )}
-                          href="https://www.figma.com/file/xrx6uDljzsWuDZiuz3ITCp/Devias-Kit-Pro-UI-6.0-Master"
-                          size="small"
-                          target="_blank"
-                          variant="contained"
+                          href='https://www.figma.com/file/xrx6uDljzsWuDZiuz3ITCp/Devias-Kit-Pro-UI-6.0-Master'
+                          size='small'
+                          target='_blank'
+                          variant='contained'
                         >
                           Preview in Figma
                         </Button>
                       </Box>
                     )}
                   </Box>
-                );
+                )
               })}
             </Stack>
           </Grid>
@@ -183,5 +183,5 @@ export const HomeFeatures = () => {
         </Grid>
       </Container>
     </Box>
-  );
-};
+  )
+}

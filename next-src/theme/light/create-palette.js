@@ -1,10 +1,10 @@
-import { common } from '@mui/material/colors';
-import { alpha } from '@mui/material/styles';
-import { error, info, neutral, success, warning } from '../colors';
-import { getPrimary } from '../utils';
+import { common } from '@mui/material/colors'
+import { alpha } from '@mui/material/styles'
+import { error, info, neutral, success, warning } from '../colors'
+import { getPrimary } from '../utils'
 
 export const createPalette = (config) => {
-  const { colorPreset, contrast } = config;
+  const { colorPreset, contrast } = config
 
   return {
     action: {
@@ -32,5 +32,5 @@ export const createPalette = (config) => {
       disabled: alpha(neutral[900], 0.38)
     },
     warning
-  };
-};
+  }
+}

@@ -4,6 +4,7 @@ import Menu01Icon from '@untitled-ui/icons-react/build/esm/Menu01'
 import { Box, Button, Container, IconButton, Stack, SvgIcon, useMediaQuery } from '@mui/material'
 import { alpha } from '@mui/material/styles'
 import Logo from '../img/logo.svg'
+import CPIcon from '../img/CP-Icon-Green@1x.svg'
 import Link from 'next/link'
 import { useWindowScroll } from '../hooks/use-window-scroll'
 import { PagesPopover } from './pages-popover'
@@ -105,6 +106,14 @@ export const TopNav = (props) => {
                   width: 24
                 }}
               >
+                <CPIcon height={24} width={24} />
+              </Box>
+              <Box
+                sx={{
+                  display: 'inline-flex',
+                  height: 14
+                }}
+              >
                 <Logo />
               </Box>
             </Stack>
@@ -165,7 +174,7 @@ export const TopNav = (props) => {
             <Button
               component='a'
               size={mdUp ? 'medium' : 'small'}
-              href='https://mui.com/store/items/devias-kit-pro'
+              href='#'
               target='_blank'
               variant='contained'
             >

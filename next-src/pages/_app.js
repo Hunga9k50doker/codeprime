@@ -7,7 +7,7 @@ import { useAmp } from 'next/amp'
 import SiteLayout from '../components/SiteLayout'
 import { BRAND_NAME, OG_TITLE, SITE_BASE_URL } from '../constants'
 import { DefaultSeo } from 'next-seo'
-import { Provider } from 'react-redux'
+import { Provider as ReduxProvider } from 'react-redux'
 import store from '../store'
 import NextProgressbar from '../components/NextProgressbar'
 import { GoogleAnalytics } from 'nextjs-google-analytics'
@@ -21,22 +21,24 @@ import { ThemeProvider } from '@mui/material/styles'
 import { createTheme } from '../theme'
 import { DevSupport } from '@react-buddy/ide-toolbox-next'
 import { ComponentPreviews, useInitial } from '../components/dev'
-import { SettingsConsumer } from '../contexts/settings-context'
+import { SettingsConsumer, SettingsProvider } from '../contexts/settings-context'
+import { SplashScreen } from '../components/splash-screen'
+import { AuthConsumer, AuthProvider } from '../contexts/auth/jwt-context'
+import { createEmotionCache } from '../utils/create-emotion-cache'
+import { CacheProvider } from '@emotion/react'
 
 dayjs.extend(relativeTime)
 dayjs.locale('vi')
+const clientSideEmotionCache = createEmotionCache()
 
-function App ({ Component, pageProps }) {
+function App (props) {
   const isAmp = useAmp()
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
 
-  const Layout = (props) => (
-    <Provider store={store()}>
-      <SiteLayout {...props} />
-    </Provider>
-  )
+  const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
-    <>
+    <CacheProvider value={emotionCache}>
       <Head>
         {!isAmp && (
           <>
@@ -103,52 +105,72 @@ function App ({ Component, pageProps }) {
         />
       )}
 
-      <SettingsConsumer>
-        {(settings) => {
-          // Prevent theme flicker when restoring custom settings from browser storage
-          if (!settings.isInitialized) {
-            // return null;
-          }
-
-          const theme = createTheme({
-            colorPreset: settings.colorPreset,
-            contrast: settings.contrast,
-            direction: settings.direction,
-            paletteMode: settings.paletteMode,
-            responsiveFontSizes: settings.responsiveFontSizes
-          })
-
-          return (
-            <ThemeProvider theme={theme}>
-              <ScopedCssBaseline>
-                <StyleProvider hashPriority='high'>
-                  <ConfigProvider
-                    theme={{
-                      token: {
-                        colorPrimary: '#3ba2d2',
-                        colorSuccess: '#3fa00e'
+      <DevSupport
+        ComponentPreviews={ComponentPreviews}
+        useInitialHook={useInitial}
+      >
+        <ReduxProvider store={store()}>
+          <AuthProvider>
+            <AuthConsumer>
+              {(auth) => (
+                <SettingsProvider>
+                  <SettingsConsumer>
+                    {(settings) => {
+                      // Prevent theme flicker when restoring custom settings from browser storage
+                      if (!settings.isInitialized) {
+                        // return null;
                       }
+
+                      const theme = createTheme({
+                        colorPreset: settings.colorPreset,
+                        contrast: settings.contrast,
+                        direction: settings.direction,
+                        paletteMode: settings.paletteMode,
+                        responsiveFontSizes: settings.responsiveFontSizes
+                      })
+
+                      // Prevent guards from redirecting
+                      const showSlashScreen = !auth.isInitialized
+
+                      return (
+                        <ThemeProvider theme={theme}>
+                          <ScopedCssBaseline>
+                            <StyleProvider hashPriority='high'>
+                              <ConfigProvider
+                                theme={{
+                                  token: {
+                                    colorPrimary: '#3ba2d2',
+                                    colorSuccess: '#3fa00e'
+                                  }
+                                }}
+                                componentSize='large'
+                                prefixCls='cp'
+                              >
+                                {showSlashScreen
+                                  ? <SplashScreen />
+                                  : (
+                                    <>
+                                      {getLayout(
+                                        <Component {...pageProps} />
+                                      )}
+                                      <GoogleAnalytics trackPageViews />
+                                    </>
+                                    )}
+                              </ConfigProvider>
+                            </StyleProvider>
+                          </ScopedCssBaseline>
+                        </ThemeProvider>
+                      )
                     }}
-                    componentSize='large'
-                    prefixCls='vluit'
-                  >
-                    <Layout>
-                      <GoogleAnalytics trackPageViews />
-                      <DevSupport
-                        ComponentPreviews={ComponentPreviews}
-                        useInitialHook={useInitial}
-                      >
-                        <Component {...pageProps} />
-                      </DevSupport>
-                    </Layout>
-                  </ConfigProvider>
-                </StyleProvider>
-              </ScopedCssBaseline>
-            </ThemeProvider>
-          )
-        }}
-      </SettingsConsumer>
-    </>
+                  </SettingsConsumer>
+                </SettingsProvider>
+              )}
+            </AuthConsumer>
+          </AuthProvider>
+        </ReduxProvider>
+      </DevSupport>
+
+    </CacheProvider>
   )
 }
 
