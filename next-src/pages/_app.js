@@ -4,7 +4,6 @@ import '../styles/main.scss'
 import React from 'react'
 import Head from 'next/head'
 import { useAmp } from 'next/amp'
-import SiteLayout from '../components/SiteLayout'
 import { BRAND_NAME, OG_TITLE, SITE_BASE_URL } from '../constants'
 import { DefaultSeo } from 'next-seo'
 import { Provider as ReduxProvider } from 'react-redux'
@@ -22,8 +21,6 @@ import { createTheme } from '../theme'
 import { DevSupport } from '@react-buddy/ide-toolbox-next'
 import { ComponentPreviews, useInitial } from '../components/dev'
 import { SettingsConsumer, SettingsProvider } from '../contexts/settings-context'
-import { SplashScreen } from '../components/splash-screen'
-import { AuthConsumer, AuthProvider } from '../contexts/auth/jwt-context'
 import { createEmotionCache } from '../utils/create-emotion-cache'
 import { CacheProvider } from '@emotion/react'
 
@@ -110,63 +107,48 @@ function App (props) {
         useInitialHook={useInitial}
       >
         <ReduxProvider store={store()}>
-          <AuthProvider>
-            <AuthConsumer>
-              {(auth) => (
-                <SettingsProvider>
-                  <SettingsConsumer>
-                    {(settings) => {
-                      // Prevent theme flicker when restoring custom settings from browser storage
-                      if (!settings.isInitialized) {
-                        // return null;
-                      }
+          <SettingsProvider>
+            <SettingsConsumer>
+              {(settings) => {
+                // Prevent theme flicker when restoring custom settings from browser storage
+                if (!settings.isInitialized) {
+                  // return null;
+                }
 
-                      const theme = createTheme({
-                        colorPreset: settings.colorPreset,
-                        contrast: settings.contrast,
-                        direction: settings.direction,
-                        paletteMode: settings.paletteMode,
-                        responsiveFontSizes: settings.responsiveFontSizes
-                      })
+                const theme = createTheme({
+                  colorPreset: settings.colorPreset,
+                  contrast: settings.contrast,
+                  direction: settings.direction,
+                  paletteMode: settings.paletteMode,
+                  responsiveFontSizes: settings.responsiveFontSizes
+                })
 
-                      // Prevent guards from redirecting
-                      const showSlashScreen = !auth.isInitialized
-
-                      return (
-                        <ThemeProvider theme={theme}>
-                          <ScopedCssBaseline>
-                            <StyleProvider hashPriority='high'>
-                              <ConfigProvider
-                                theme={{
-                                  token: {
-                                    colorPrimary: '#3ba2d2',
-                                    colorSuccess: '#3fa00e'
-                                  }
-                                }}
-                                componentSize='large'
-                                prefixCls='cp'
-                              >
-                                {showSlashScreen
-                                  ? <SplashScreen />
-                                  : (
-                                    <>
-                                      {getLayout(
-                                        <Component {...pageProps} />
-                                      )}
-                                      <GoogleAnalytics trackPageViews />
-                                    </>
-                                    )}
-                              </ConfigProvider>
-                            </StyleProvider>
-                          </ScopedCssBaseline>
-                        </ThemeProvider>
-                      )
-                    }}
-                  </SettingsConsumer>
-                </SettingsProvider>
-              )}
-            </AuthConsumer>
-          </AuthProvider>
+                return (
+                  <ThemeProvider theme={theme}>
+                    <ScopedCssBaseline>
+                      <StyleProvider hashPriority='high'>
+                        <ConfigProvider
+                          theme={{
+                            token: {
+                              colorPrimary: '#3ba2d2',
+                              colorSuccess: '#3fa00e'
+                            }
+                          }}
+                          componentSize='large'
+                          prefixCls='cp'
+                        >
+                          {getLayout(
+                            <Component {...pageProps} />
+                          )}
+                          <GoogleAnalytics trackPageViews />
+                        </ConfigProvider>
+                      </StyleProvider>
+                    </ScopedCssBaseline>
+                  </ThemeProvider>
+                )
+              }}
+            </SettingsConsumer>
+          </SettingsProvider>
         </ReduxProvider>
       </DevSupport>
 

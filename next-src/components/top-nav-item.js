@@ -1,10 +1,9 @@
-import { useCallback, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
 import ChevronDownIcon from '@untitled-ui/icons-react/build/esm/ChevronDown'
 import { Box, ButtonBase, Paper, Portal, SvgIcon, Typography } from '@mui/material'
 import { alpha } from '@mui/material/styles'
 import Link from 'next/link'
-import React from 'react'
 
 const TOP_NAV_HEIGHT = 64
 const TOP_NAV_SPACE = 16
@@ -139,6 +138,10 @@ export const TopNavItem = (props) => {
           textAlign: 'left',
           '&:hover': {
             backgroundColor: 'action.hover'
+          },
+          '&:active': {
+            color: 'primary.dark',
+            backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.2)
           },
           ...(active && {
             color: 'primary.main'

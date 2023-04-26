@@ -1,11 +1,8 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import tw from 'twin.macro'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import classnames from 'classnames'
-import SiteFooter from './SiteFooter'
-import Link from 'next/link'
+import { Footer } from './footer'
 import { TopNav } from './top-nav'
 
 const ignoreHeaderURLsList = [
@@ -39,7 +36,7 @@ function SiteLayout (props) {
         {props.children}
       </LayoutRoot>
 
-      <SiteFooter />
+      <Footer />
 
       <GoTop />
       <Toast />
@@ -48,37 +45,3 @@ function SiteLayout (props) {
 }
 
 export default SiteLayout
-
-const TopNavButton = ({ href, children, ...otherProps }) => {
-  const router = useRouter()
-  return (
-    <MenuButton
-      href={href}
-      color='inherit'
-      className={classnames({ active: href.replace(/\//g, '') === router.pathname.split('/')[1] })}
-      {...otherProps}
-    >
-      {children}
-    </MenuButton>
-  )
-}
-
-// language=SCSS prefix=*{ suffix=}
-const MenuButton = styled(Link)`
-  ${tw`
-    px-4
-    py-2
-    inline-flex
-    rounded
-    hover:underline
-    active:outline-dashed
-    active:outline-primary-600
-  `}
-  
-  &.active {
-    ${tw`
-      underline
-      text-primary-800
-    `}
-  }
-`

@@ -1,9 +1,9 @@
-import EyeIcon from '@untitled-ui/icons-react/build/esm/Eye'
-import LayoutBottomIcon from '@untitled-ui/icons-react/build/esm/LayoutBottom'
+import EyeIcon from '@untitled-ui/icons-react/build/esm/CurrencyDollar'
 import { Box, Button, Container, Rating, Stack, SvgIcon, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
 import { HomeCodeSamples } from './home-code-samples'
 import Link from 'next/link'
+import NinjaHome from '../../img/ninja-01.svg'
 
 export const HomeHero = () => {
   const theme = useTheme()
@@ -18,104 +18,111 @@ export const HomeHero = () => {
       }}
     >
       <Container maxWidth='lg'>
-        <Box maxWidth='sm'>
-          <Typography
-            variant='h1'
-            sx={{ mb: 2 }}
-          >
-            Let us worry about the&nbsp;
+        <Stack
+          direction='row'
+          spacing={2}
+        >
+          <Box maxWidth='sm'>
             <Typography
-              component='span'
-              color='primary.main'
-              variant='inherit'
+              variant='h1'
+              sx={{ mb: 2 }}
             >
-              User Experience
-            </Typography>
-            , you focus on Developing.
-          </Typography>
-          <Typography
-            color='text.secondary'
-            sx={{
-              fontSize: 20,
-              fontWeight: 500
-            }}
-          >
-            A professional kit that comes with ready-to-use MUI components developed with one common
-            goal in mind, help you build faster & beautiful applications.
-          </Typography>
-          <Stack
-            alignItems='center'
-            direction='row'
-            flexWrap='wrap'
-            spacing={1}
-            sx={{ my: 3 }}
-          >
-            <Rating
-              readOnly
-              value={4.7}
-              precision={0.1}
-              max={5}
-            />
-            <Typography
-              color='text.primary'
-              variant='caption'
-              sx={{ fontWeight: 700 }}
-            >
-              4.7/5
+              Unlock your business with{' '}
+              <Typography
+                component='span'
+                color='primary.main'
+                variant='inherit'
+              >
+                Cutting-Edge Web Dev
+              </Typography>
+              . Your trusted IT partner.
             </Typography>
             <Typography
               color='text.secondary'
-              variant='caption'
+              sx={{
+                fontSize: 20,
+                fontWeight: 500
+              }}
             >
-              based on (70+ reviews)
+              At our software development firm, we pride ourselves on staying at the forefront of emerging technologies
+              and consistently improving the quality of our products. Our team of skilled engineers is
+              dedicated to helping you achieve success with your development project.
             </Typography>
-          </Stack>
-          <Stack
-            alignItems='center'
-            direction='row'
-            spacing={2}
-          >
-            <Button
-              component={Link}
-              href='/'
-              startIcon={(
-                <SvgIcon fontSize='small'>
-                  <EyeIcon />
-                </SvgIcon>
-              )}
-              sx={(theme) => theme.palette.mode === 'dark'
-                ? {
-                    backgroundColor: 'neutral.50',
-                    color: 'neutral.900',
-                    '&:hover': {
-                      backgroundColor: 'neutral.200'
-                    }
-                  }
-                : {
-                    backgroundColor: 'neutral.900',
-                    color: 'neutral.50',
-                    '&:hover': {
-                      backgroundColor: 'neutral.700'
-                    }
-                  }}
-              variant='contained'
+            <Stack
+              alignItems='center'
+              direction='row'
+              flexWrap='wrap'
+              spacing={1}
+              sx={{ my: 3 }}
             >
-              Live Demo
-            </Button>
-            <Button
-              color='inherit'
-              component={Link}
-              href='/'
-              startIcon={(
-                <SvgIcon fontSize='small'>
-                  <LayoutBottomIcon />
-                </SvgIcon>
-              )}
+              <Rating
+                readOnly
+                value={4.8}
+                precision={0.1}
+                max={5}
+                size='large'
+              />
+              <Typography
+                color='text.primary'
+                variant='caption'
+                sx={{ fontWeight: 700 }}
+              >
+                4.8/5
+              </Typography>
+              <Typography
+                color='text.secondary'
+                variant='caption'
+              >
+                based on (20+ reviews)
+              </Typography>
+            </Stack>
+            <Stack
+              alignItems='center'
+              direction='row'
+              spacing={2}
             >
-              Components
-            </Button>
-          </Stack>
-        </Box>
+              <Button
+                component={Link}
+                href='/quote/'
+                startIcon={(
+                  <SvgIcon fontSize='small'>
+                    <EyeIcon />
+                  </SvgIcon>
+              )}
+                sx={(theme) => theme.palette.mode === 'dark'
+                  ? {
+                      backgroundColor: 'neutral.50',
+                      color: 'neutral.900',
+                      '&:hover': {
+                        backgroundColor: 'neutral.200'
+                      }
+                    }
+                  : {
+                      backgroundColor: 'neutral.900',
+                      color: 'neutral.50',
+                      '&:hover': {
+                        backgroundColor: 'neutral.700'
+                      }
+                    }}
+                variant='contained'
+              >
+                Get a Quote Now
+              </Button>
+              <Button
+                color='inherit'
+                component={Link}
+                href='/contact/'
+              >
+                Contact Us
+              </Button>
+            </Stack>
+          </Box>
+
+          <Box justifyContent='center' display='flex' width='100%'>
+            <NinjaHome width='500' height='490' />
+          </Box>
+        </Stack>
+
         <Box
           sx={{
             pt: '120px',

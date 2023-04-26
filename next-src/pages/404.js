@@ -18,7 +18,7 @@ export default function Custom404 () {
           Lỗi 404 - Không tìm thấy trang truy vấn
         </div>
         <div className='mt-4'>
-          <Link href='/' className='btn btn-outline btn-primary'>
+          <Link href='/' className='hover:text-primary-500 active:underline'>
             Trở về trang chủ
           </Link>
         </div>

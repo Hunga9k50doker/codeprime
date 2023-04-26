@@ -7,23 +7,25 @@ import Logo from '../img/logo.svg'
 import CPIcon from '../img/CP-Icon-Green@1x.svg'
 import Link from 'next/link'
 import { useWindowScroll } from '../hooks/use-window-scroll'
-import { PagesPopover } from './pages-popover'
 import { TopNavItem } from './top-nav-item'
 import { usePathname } from 'next/navigation'
 
 const items = [
   {
-    title: 'Components',
+    title: 'Homepage',
     path: '/'
   },
   {
-    title: 'Pages',
-    popover: <PagesPopover />
+    title: 'Technologies',
+    path: '/tech/'
   },
   {
-    title: 'Docs',
-    path: '/',
-    external: true
+    title: 'Portfolio',
+    path: '/portfolio/'
+  },
+  {
+    title: 'Contact Us',
+    path: '/contact/'
   }
 ]
 
@@ -164,6 +166,7 @@ export const TopNav = (props) => {
               </Box>
             </Stack>
           )}
+
           <Stack
             alignItems='center'
             direction='row'
@@ -172,13 +175,12 @@ export const TopNav = (props) => {
             sx={{ flexGrow: 1 }}
           >
             <Button
-              component='a'
+              component={Link}
               size={mdUp ? 'medium' : 'small'}
-              href='#'
-              target='_blank'
+              href='/quote/'
               variant='contained'
             >
-              Purchase Now
+              Get a Quote
             </Button>
             {!mdUp && (
               <IconButton onClick={onMobileNavOpen}>
