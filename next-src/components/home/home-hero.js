@@ -1,9 +1,11 @@
 import EyeIcon from '@untitled-ui/icons-react/build/esm/CurrencyDollar'
 import { Box, Button, Container, Rating, Stack, SvgIcon, Typography } from '@mui/material'
 import { useTheme } from '@mui/material/styles'
-import { HomeCodeSamples } from './home-code-samples'
 import Link from 'next/link'
 import NinjaHome from '../../img/ninja-01.svg'
+import dynamic from 'next/dynamic'
+
+const HomeCodeSamples = dynamic(() => import('./home-code-samples').then(mod => mod.HomeCodeSamples), { ssr: false })
 
 export const HomeHero = () => {
   const theme = useTheme()
@@ -88,7 +90,7 @@ export const HomeHero = () => {
                   <SvgIcon fontSize='small'>
                     <EyeIcon />
                   </SvgIcon>
-              )}
+                )}
                 sx={(theme) => theme.palette.mode === 'dark'
                   ? {
                       backgroundColor: 'neutral.50',
@@ -146,12 +148,11 @@ export const HomeHero = () => {
               }
             }}
           >
-            <img
+             <img
               alt=''
-              src={theme.palette.mode === 'dark'
-                ? '/assets/home-thumbnail-dark.png'
-                : '/assets/home-thumbnail-light.png'}
-            />
+              src='/assets/home-thumbnail.jpg'
+              loading='lazy'
+             />
           </Box>
           <Box
             sx={{

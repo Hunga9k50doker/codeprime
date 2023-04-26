@@ -6,110 +6,53 @@ import { codeStyle } from '../../utils/code-style'
 
 const samples = [
   {
-    lang: 'jsx',
-    label: '.jsx',
-    icon: '/assets/logos/logo-javascript.svg',
+    lang: 'python',
+    label: '.py',
+    icon: '/assets/logos/logo-python.svg',
     code: `
-import { useState } from 'react';
-import { usePageView } from '../../hooks/use-page-view';
+from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django_countries.fields import CountryField
+import uuid
 
-const Page = () => {
-  const [currentTab, setCurrentTab] = useState('general');
+class User(AbstractUser):
+    country = CountryField()
 
-  usePageView();
 
-  return (
-    <Box
-      component="main"
-      sx={{ flexGrow: 1, py: 8 }}
-    >
-      <Container maxWidth="xl">
-        <Stack
-          spacing={3}
-          sx={{ mb: 3 }}
-        >
-          <Typography variant="h4">
-            Account
-          </Typography>
-          <div>
-            <Tabs
-              indicatorColor="primary"
-              onChange={() => {}}
-              scrollButtons="auto"
-              textColor="primary"
-              value={currentTab}
-              variant="scrollable"
-            >
-              {[].map((tab) => (
-                <Tab
-                  key={tab.value}
-                  label={tab.label}
-                  value={tab.value}
-                />
-              ))}
-            </Tabs>
-            <Divider />
-          </div>
-        </Stack>
-      </Container>
-    </Box>
-  );
-};
+class Product(models.Model):
+    name = models.CharField(max_length=200)
+    price = models.PositiveIntegerField()
+    is_digital = models.BooleanField(default=False)
+
+
+class Order(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    ordered_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    ordered_on = models.DateField(auto_now_add=True)
 `
   },
   {
-    lang: 'tsx',
-    label: '.tsx',
-    icon: '/assets/logos/logo-typescript.svg',
+    lang: 'js',
+    label: '.js',
+    icon: '/assets/logos/logo-javascript.svg',
     code: `
-import { useState } from 'react';
-import type { NextPage } from 'next';
-import { usePageView } from 'src/hooks/use-page-view';
-import { useUser } from 'src/hooks/use-user';
+import Layout from '../components/layout'
+import NestedLayout from '../components/nested-layout'
 
-const Page: NextPage = () => {
-  const user = useUser();
-  const [currentTab, setCurrentTab] = useState<string>('general');
-
-  usePageView();
-
+export default function Page() {
   return (
-    <Box
-      component="main"
-      sx={{ flexGrow: 1, py: 8 }}
-    >
-      <Container maxWidth="xl">
-        <Stack
-          spacing={3}
-          sx={{ mb: 3 }}
-        >
-          <Typography variant="h4">
-            Account
-          </Typography>
-          <div>
-            <Tabs
-              indicatorColor="primary"
-              onChange={() => {}}
-              scrollButtons="auto"
-              textColor="primary"
-              value={currentTab}
-              variant="scrollable"
-            >
-              {[].map((tab) => (
-                <Tab
-                  key={tab.value}
-                  label={tab.label}
-                  value={tab.value}
-                />
-              ))}
-            </Tabs>
-            <Divider />
-          </div>
-        </Stack>
-      </Container>
-    </Box>
-  );
-};
+    /** Your content */
+  )
+}
+
+Page.getLayout = function getLayout(page) {
+  return (
+    <Layout>
+      <NestedLayout>{page}</NestedLayout>
+    </Layout>
+  )
+}
 `
   }
 ]
