@@ -1,5 +1,5 @@
 import React from 'react'
-import SiteLayout from '../components/SiteLayout'
+import SiteLayout from '../layouts/site-layout'
 import { NextSeo } from 'next-seo'
 import { Box, Container } from '@mui/material'
 

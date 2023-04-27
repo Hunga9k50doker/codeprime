@@ -175,6 +175,7 @@ export const HomeCodeSamples = () => {
         }}
       >
         <SyntaxHighlighter
+          // eslint-disable-next-line
           children={code}
           language={currentLang}
           style={codeStyle}

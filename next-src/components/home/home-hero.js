@@ -134,7 +134,7 @@ export const HomeHero = () => {
           <Box
             sx={{
               overflow: 'hidden',
-              width: '90%',
+              width: '80%',
               fontSize: 0,
               mt: -2,
               mx: -2,
@@ -148,11 +148,11 @@ export const HomeHero = () => {
               }
             }}
           >
-             <img
+            <img
               alt=''
               src='/assets/home-thumbnail.jpg'
               loading='lazy'
-             />
+            />
           </Box>
           <Box
             sx={{
