@@ -133,3 +133,8 @@ svg {
 .font-heading {
   font-family: var(--heading-font);
 }
+
+form .MuiOutlinedInput-notchedOutline > legend {
+  width: auto !important;
+  line-height: 11px !important;
+}

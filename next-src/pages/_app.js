@@ -95,7 +95,7 @@ function App (props) {
           color='#019a4d77'
           startPosition={0.3}
           stopDelayMs={200}
-          height={2}
+          height={4}
           options={{
             showSpinner: false
           }}
