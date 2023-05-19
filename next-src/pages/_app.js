@@ -1,5 +1,5 @@
 import 'antd/dist/reset.css'
-import '../styles/main.scss'
+import '../styles/index.scss'
 
 import React from 'react'
 import Head from 'next/head'
