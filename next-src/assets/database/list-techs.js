@@ -112,8 +112,7 @@ export const techs = {
     },
     {
       type: "TURNING IDEAS TO REALITY",
-      title:
-        "Consulting on developing web applications and building information technology infrastructure",
+      title: "Consulting and building information technology infrastructure",
       tech: "Infrastructure Technology",
       icon: <GrapqlIcon />,
       description:

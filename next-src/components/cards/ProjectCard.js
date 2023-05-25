@@ -9,11 +9,19 @@ import {
 } from "@mui/material";
 import PropTypes from "prop-types";
 import useTranslation from "next-translate/useTranslation";
+import { useIsOverflow } from "hooks/use-is-overflow";
 
 const ProjectCard = (props) => {
   const { image, link, title, description } = props;
   const { t } = useTranslation("common");
   const smDown = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const refDescription = React.useRef();
+  const isOverflow = useIsOverflow(refDescription);
+  const [isViewMore, setIsViewMore] = React.useState(false);
+  const onViewMore = () => {
+    setIsViewMore(true);
+  };
+
   return (
     <Card
       sx={{
@@ -22,7 +30,6 @@ const ProjectCard = (props) => {
         background: `url(${image})`,
         overflow: "hidden",
         position: "relative",
-        cursor: "pointer",
         "&:hover .MuiCardContent-root": {
           right: 0,
         },
@@ -32,7 +39,7 @@ const ProjectCard = (props) => {
         sx={{
           position: "absolute",
           top: 0,
-          right: "-100%",
+          right: "0",
           width: "100%",
           height: "100%",
           background: "#1f3d4799",
@@ -59,17 +66,35 @@ const ProjectCard = (props) => {
             className={smDown ? "" : "x-line-clamp-6"}
             sx={{
               flex: 1,
-              overflowY: smDown ? "auto" : "hidden",
+              overflowY: smDown ? "auto" : isViewMore ? "auto" : "hidden",
             }}
+            ref={refDescription}
           >
             {description}
           </Typography>
+          {isOverflow && !isViewMore && (
+            <Typography
+              onClick={onViewMore}
+              color={"common.white"}
+              className={`${smDown ? "d-none" : ""} m-0`}
+              sx={{
+                width: "fit-content",
+                mt: "0px !important",
+                p: 0,
+                cursor: "pointer",
+                "&:hover": {
+                  color: "primary.main",
+                },
+              }}
+            >
+              [xem thêm]
+            </Typography>
+          )}
           <Button
             component="a"
             href={link}
             target="_blank"
             variant="contained"
-            // color="neutral.50"
             size="sm"
             fullWidth
           >
