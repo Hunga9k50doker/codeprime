@@ -19,6 +19,7 @@ const ProjectCard = (props) => {
   const isOverflow = useIsOverflow(refDescription);
   const [isViewMore, setIsViewMore] = React.useState(false);
   const onViewMore = () => {
+    if (isViewMore) refDescription.current.scrollTop = 0;
     setIsViewMore(!isViewMore);
   };
 
@@ -63,10 +64,10 @@ const ProjectCard = (props) => {
           </Typography>
           <Typography
             color={"common.white"}
-            className={smDown ? "" : "x-line-clamp-6"}
             sx={{
               flex: 1,
-              overflowY: smDown ? "auto" : isViewMore ? "auto" : "hidden",
+              pb: 4,
+              overflowY: isViewMore ? "auto" : "hidden",
             }}
             ref={refDescription}
           >
@@ -78,6 +79,7 @@ const ProjectCard = (props) => {
               color={"common.white"}
               className={`${smDown ? "d-none" : ""} m-0`}
               sx={{
+                fontWeight: 500,
                 width: "fit-content",
                 mt: "0px !important",
                 p: 0,
