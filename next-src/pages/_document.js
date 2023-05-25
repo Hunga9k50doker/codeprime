@@ -26,6 +26,7 @@ export default class MyDocument extends Document {
   render() {
     const currentLocale =
       this.props.__NEXT_DATA__.locale || i18nConfig.defaultLocale;
+    console.log(this.props.__NEXT_DATA__.locale, i18nConfig.defaultLocale);
     return (
       <Html lang={currentLocale}>
         <Head>

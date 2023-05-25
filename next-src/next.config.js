@@ -16,6 +16,9 @@ const images = {
 };
 
 const nextConfig = {
+  experimental: {
+    forceSwcTransforms: false,
+  },
   reactStrictMode: true,
   env: {
     spaceID: process.env.spaceID,
@@ -23,7 +26,7 @@ const nextConfig = {
   },
   distDir: "build",
   trailingSlash: true,
-  assetPrefix: isProd ? `https://cdn.${domain}` : undefined,
+  // assetPrefix: isProd ? `https://cdn.${domain}` : undefined,
   modularizeImports: {
     lodash: {
       transform: "lodash/{{member}}",
