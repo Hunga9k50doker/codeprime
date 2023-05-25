@@ -2,17 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-$site-font: 'Roboto Mono', monospace;
-$heading-font: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+$site-font: "Roboto Mono", monospace;
+$heading-font: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+  sans-serif, Apple Color Emoji, Segoe UI Emoji;
 
 :root {
   /* hack for tailwind ring */
-  --tw-ring-inset: var(--tw-empty,/*!*/ /*!*/);
+  --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
   --tw-ring-offset-color: #fff0;
   --tw-ring-offset-width: 0px;
 
   --site-font: #{$site-font};
   --heading-font: #{$heading-font};
+
+  --primary-color: #16b364;
 }
 
 *,
@@ -57,6 +60,13 @@ body {
   line-height: 1.5;
   font-size: 14px;
   font-family: var(--site-font);
+  width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+img {
+  object-fit: contain !important;
 }
 
 .table-responsive {
@@ -83,6 +93,22 @@ body {
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   line-clamp: 3;
+  overflow: hidden;
+}
+
+.x-line-clamp-6 {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  line-clamp: 6;
+  overflow: hidden;
+}
+
+.x-line-clamp-7 {
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  line-clamp: 7;
   overflow: hidden;
 }
 
@@ -138,3 +164,13 @@ form .MuiOutlinedInput-notchedOutline > legend {
   width: auto !important;
   line-height: 11px !important;
 }
+
+// swiper slider
+.swiper-button-disabled {
+  pointer-events: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.35 !important;
+}
+// .swiper-slide-active {
+//   border: 1px solid var(--primary-color);
+// }

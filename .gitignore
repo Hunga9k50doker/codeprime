@@ -203,3 +203,4 @@ bower_components/
 /crawlers/trf_full_novels.json
 /static/cache
 /static_collected/
+./next-src/.next

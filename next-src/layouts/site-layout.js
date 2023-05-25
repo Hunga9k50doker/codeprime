@@ -14,7 +14,9 @@ const Toast = dynamic(() => import('../components/Toast'), { ssr: false })
 const GoTop = dynamic(() => import('../components/GoTop'), { ssr: false })
 const LayoutRoot = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
-  height: '100%'
+  height: '100%',
+  minHeight: '100vh',
+  overflowX: 'hidden',
 }))
 
 function SiteLayout (props) {

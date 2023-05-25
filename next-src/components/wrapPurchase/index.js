@@ -2,16 +2,20 @@ import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { fadeIn, zoomIn, staggerContainer } from "utils/motion";
 import { motion } from "framer-motion";
 import useTranslation from "next-translate/useTranslation";
-export const HomeCta = () => {
+import PropTypes from "prop-types";
+import Link from "next/link";
+
+export const WrapPurchase = (props) => {
+  const { backgroundColor, color } = props;
   const { t } = useTranslation("common");
   return (
     <Box
       sx={{
-        backgroundColor: "neutral.800",
+        backgroundColor: backgroundColor ?? "neutral.800",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "top center",
         backgroundImage: 'url("/assets/gradient-bg.svg")',
-        color: "neutral.100",
+        color: color ?? "neutral.100",
         py: "120px",
       }}
     >
@@ -48,8 +52,8 @@ export const HomeCta = () => {
               sx={{ mt: 3 }}
             >
               <Button
-                component="a"
-                href="https://mui.com/store/items/devias-kit-pro"
+                component={Link}
+                href="/quote/"
                 target="_blank"
                 variant="contained"
               >
@@ -61,4 +65,9 @@ export const HomeCta = () => {
       </motion.div>
     </Box>
   );
+};
+
+WrapPurchase.propTypes = {
+  backgroundColor: PropTypes.string,
+  color: PropTypes.string,
 };

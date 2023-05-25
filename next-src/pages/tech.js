@@ -1,35 +1,22 @@
-import React from 'react'
-import SiteLayout from '../layouts/site-layout'
-import { NextSeo } from 'next-seo'
-import { Box, Container } from '@mui/material'
-
-function Tech (props) {
+import React from "react";
+import SiteLayout from "../layouts/site-layout";
+import { NextSeo } from "next-seo";
+import { Box, Container } from "@mui/material";
+import { TechHero } from "components/tech/tech-hero";
+import { TechServices } from "components/tech/tech-services";
+function Tech(props) {
   return (
     <>
-      <NextSeo
-        title='CodePrime'
-      />
+      <NextSeo title="CodePrime Tech" />
 
-      <Box
-        sx={{
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'top center',
-          backgroundImage: 'url("/assets/gradient-bg.svg")',
-          pt: '120px'
-        }}
-      >
-        <Container maxWidth='lg'>
-          xxx
-        </Container>
-      </Box>
+      <main>
+        <TechHero />
+        <TechServices />
+      </main>
     </>
-  )
+  );
 }
 
-export default Tech
+export default Tech;
 
-Tech.getLayout = (page) => (
-  <SiteLayout>
-    {page}
-  </SiteLayout>
-)
+Tech.getLayout = (page) => <SiteLayout>{page}</SiteLayout>;

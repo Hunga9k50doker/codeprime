@@ -1,35 +1,22 @@
-import React from 'react'
-import SiteLayout from '../layouts/site-layout'
-import { NextSeo } from 'next-seo'
-import { Box, Container } from '@mui/material'
-
-function Portfolio (props) {
+import React from "react";
+import SiteLayout from "../layouts/site-layout";
+import { NextSeo } from "next-seo";
+import { Box, Container } from "@mui/material";
+import { PortfolioHero } from "components/portfolio/portfolio-hero";
+import { PortfolioProjects } from "components/portfolio/portfolio-projects";
+function Portfolio(props) {
   return (
     <>
-      <NextSeo
-        title='CodePrime'
-      />
+      <NextSeo title="CodePrime" />
 
-      <Box
-        sx={{
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'top center',
-          backgroundImage: 'url("/assets/gradient-bg.svg")',
-          pt: '120px'
-        }}
-      >
-        <Container maxWidth='lg'>
-          xxx
-        </Container>
-      </Box>
+      <main>
+        <PortfolioHero />
+        <PortfolioProjects />
+      </main>
     </>
-  )
+  );
 }
 
-export default Portfolio
+export default Portfolio;
 
-Portfolio.getLayout = (page) => (
-  <SiteLayout>
-    {page}
-  </SiteLayout>
-)
+Portfolio.getLayout = (page) => <SiteLayout>{page}</SiteLayout>;

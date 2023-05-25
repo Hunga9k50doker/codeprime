@@ -31,7 +31,7 @@ export const TopNavItem = (props) => {
           sx={{
             display: 'flex',
             alignItems: 'center',
-            height: '100%'
+            height: '100%',
           }}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -42,6 +42,7 @@ export const TopNavItem = (props) => {
               alignItems: 'center',
               borderRadius: 1,
               display: 'flex',
+              width: '100%',
               justifyContent: 'flex-start',
               px: '16px',
               py: '8px',
