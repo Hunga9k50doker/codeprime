@@ -26,7 +26,7 @@ const nextConfig = {
   },
   distDir: "build",
   trailingSlash: true,
-  assetPrefix: isProd ? `https://cdn.${domain}` : undefined,
+  // assetPrefix: isProd ? `https://cdn.${domain}` : undefined,
   modularizeImports: {
     lodash: {
       transform: "lodash/{{member}}",
