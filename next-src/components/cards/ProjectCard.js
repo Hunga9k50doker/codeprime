@@ -19,7 +19,7 @@ const ProjectCard = (props) => {
   const isOverflow = useIsOverflow(refDescription);
   const [isViewMore, setIsViewMore] = React.useState(false);
   const onViewMore = () => {
-    setIsViewMore(true);
+    setIsViewMore(!isViewMore);
   };
 
   return (
@@ -39,7 +39,7 @@ const ProjectCard = (props) => {
         sx={{
           position: "absolute",
           top: 0,
-          right: "0",
+          right: "-100%",
           width: "100%",
           height: "100%",
           background: "#1f3d4799",
@@ -72,7 +72,7 @@ const ProjectCard = (props) => {
           >
             {description}
           </Typography>
-          {isOverflow && !isViewMore && (
+          {isOverflow && (
             <Typography
               onClick={onViewMore}
               color={"common.white"}
@@ -87,7 +87,7 @@ const ProjectCard = (props) => {
                 },
               }}
             >
-              [xem thêm]
+              {isViewMore ? t("view_less_title") : t("view_more_title")}
             </Typography>
           )}
           <Button
