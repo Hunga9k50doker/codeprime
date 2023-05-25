@@ -42,6 +42,14 @@ const NewStyleSelect = styled("div")(({ theme }) => ({
   },
 }));
 
+const MenuProps = {
+  PaperProps: {
+    style: {
+      transform: "translateX(-16px)",
+    },
+  },
+};
+
 const TOP_NAV_HEIGHT = 64;
 
 export const TopNav = (props) => {
@@ -123,8 +131,6 @@ export const TopNav = (props) => {
           spacing={2}
           sx={{
             height: TOP_NAV_HEIGHT,
-            // width: "100vh",
-            // overflowX: "hidden",
           }}
         >
           <Stack
@@ -250,6 +256,7 @@ export const TopNav = (props) => {
                 navItemLanguage={
                   <NewStyleSelect>
                     <Select
+                      MenuProps={MenuProps}
                       size="small"
                       fullWidth
                       sx={{
@@ -266,7 +273,10 @@ export const TopNav = (props) => {
                         <MenuItem
                           key={index}
                           value={language.value}
-                          sx={{ display: "flex", justifyContent: "center" }}
+                          sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                          }}
                         >
                           {language.description}
                         </MenuItem>

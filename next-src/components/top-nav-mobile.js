@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { motion, Variants } from "framer-motion";
 import PropTypes from "prop-types";
-import { TopNavItem } from "./top-nav-item";
-import { ButtonBase, Stack } from "@mui/material";
+import { ButtonBase, Stack, useMediaQuery } from "@mui/material";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
@@ -18,7 +17,7 @@ const itemVariants = {
 const TopNavMobile = (props) => {
   const { title, listNav, pathname, navItemLanguage } = props;
   const [isOpen, setIsOpen] = useState(false);
-
+  const smDown = useMediaQuery((theme) => theme.breakpoints.down("sm"));
   return (
     <motion.nav
       initial={false}
@@ -55,8 +54,8 @@ const TopNavMobile = (props) => {
           flexDirection: "column",
           position: "absolute",
           top: "100%",
-          right: 0,
-          width: "320px",
+          right: -16,
+          width: smDown ? "100vw" : "320px",
           overflowY: "auto",
         }}
       >
