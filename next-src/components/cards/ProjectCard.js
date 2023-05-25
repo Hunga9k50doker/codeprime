@@ -87,7 +87,9 @@ const ProjectCard = (props) => {
                 },
               }}
             >
-              {isViewMore ? t("view_less_title") : t("view_more_title")}
+              {isViewMore
+                ? `[${t("view_less_title")}]`
+                : `[${t("view_more_title")}]`}
             </Typography>
           )}
           <Button

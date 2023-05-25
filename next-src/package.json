@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.9.1",
@@ -74,12 +75,12 @@
     "url-join": "^5.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.4",
     "@babel/plugin-transform-runtime": "^7.21.4",
     "@emotion/babel-plugin": "11.10.6",
     "@emotion/babel-preset-css-prop": "^11.10.0",
     "@next/bundle-analyzer": "^13.3.0",
     "@reduxjs/toolkit": "^1.9.5",
+    "@types/react": "^18.2.7",
     "autoprefixer": "^10.4.14",
     "babel-plugin-inline-react-svg": "^2.0.2",
     "dotenv": "^16.0.3",
